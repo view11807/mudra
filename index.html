@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudra Finance - Your Future, Financed. Advanced Solutions</title>
+    <meta name="description" content="Mudra Finance offers advanced and secure personal, home, education, and business loans. Experience world-class digital finance solutions with leading security and modern design.">
+    <meta name="keywords" content="Mudra Finance, personal loan, home loan, education loan, business loan, EMI calculator, advanced financial services, secure loans, fast approval, innovative finance, 3D animations, professional design, smart finance">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght=700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- GSAP for World-Class Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+    </script>
+
+    <style>
+        /* Base Reset & Variables */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /* For 3D effects */
+            transform-style: preserve-3d;
+        }
+
+        :root {
+            --primary-dark-blue: #0A2B4C; /* Deep Ocean Blue */
+            --secondary-gold: #FFD700;   /* Bright Gold */
+            --accent-light-blue: #ADD8E6; /* Light Blue for contrast */
+            --text-white: #FFFFFF;
+            --text-dark: #2C3E50;       /* Dark charcoal for body text */
+            --light-grey: #F0F4F8;      /* Very light background */
+            --medium-grey: #DDE6EF;     /* Subtle borders/dividers */
+            --red-error: #EF4444;       /* Tailwind red 500 */
+            --success-green: #22C55E;   /* Tailwind green 500 */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--light-grey);
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-dark-blue);
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-gold);
+            transform: translateY(-1px);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark-blue);
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+
+        h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); } /* Larger for impact */
+        h2 { font-size: clamp(2.2rem, 5vw, 4rem); }
+        h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+        h4 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1300px; /* Slightly wider */
+            margin: 0 auto;
+            padding: 0 30px; /* More padding */
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-gold);
+            color: var(--primary-dark-blue);
+            padding: 16px 35px; /* Larger padding */
+            border-radius: 10px; /* More rounded */
+            font-weight: 700;
+            font-size: 1.2rem; /* Larger text */
+            letter-spacing: 0.8px; /* More prominent tracking */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Stronger shadow */
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: -1;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: #e6c200;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+
+        .btn i {
+            margin-right: 10px; /* More space for icon */
+            font-size: 1.3em;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-dark-blue);
+            border: 3px solid var(--primary-dark-blue); /* Thicker border */
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background-color: var(--primary-dark-blue);
+            color: var(--text-white);
+            border-color: var(--primary-dark-blue);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .section-padding {
+            padding: 120px 0; /* More vertical space for sections */
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-gold {
+            color: var(--secondary-gold);
+        }
+
+        .bg-dark-blue {
+            background-color: var(--primary-dark-blue);
+            color: var(--text-white);
+        }
+
+        .bg-light-grey {
+            background-color: var(--light-grey);
+        }
+
+        .grid-layout {
+            display: grid;
+            gap: 50px; /* Increased gap */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--primary-dark-blue);
+            color: var(--text-white);
+            padding: 25px 0; /* More padding */
+            position: sticky;
+            top: 0;
+            z-index: 1001; /* Higher z-index */
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3); /* Stronger shadow */
+            transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+        }
+        .header.scrolled {
+            background-color: rgba(10, 43, 76, 0.98); /* Less transparent when scrolled */
+            padding: 18px 0;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; /* Larger logo */
+            font-weight: 900;
+            color: var(--text-white);
+            letter-spacing: -2px;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            text-shadow: 0 0 5px rgba(255,255,255,0.2);
+        }
+        .logo:hover {
+            transform: scale(1.03);
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+        .logo span {
+            color: var(--secondary-gold);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px; /* More space between nav items */
+        }
+
+        .nav-menu a {
+            color: var(--text-white);
+            font-weight: 500;
+            font-size: 1.15rem; /* Larger text */
+            padding: 10px 0;
+            position: relative;
+            transition: all 0.3s ease;
+            perspective: 1000px; /* For 3D hover */
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 4px; /* Thicker underline */
+            background-color: var(--secondary-gold);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+            left: 0;
+        }
+        /* 3D Hover effect for nav links */
+        .nav-menu a span {
+            display: block;
+            transform: rotateX(0deg);
+            transition: transform 0.3s ease-out;
+            transform-origin: bottom center;
+        }
+        .nav-menu a:hover span {
+            transform: rotateX(15deg);
+        }
+
+        /* Mobile Nav */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 7px; /* More space between bars */
+            padding: 8px;
+            z-index: 1002;
+            position: relative;
+            width: 40px; /* Larger hit area for hamburger */
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+        .hamburger span {
+            height: 4px; /* Thicker bars */
+            width: 35px; /* Wider bars */
+            background-color: var(--text-white);
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background-color: var(--primary-dark-blue);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 30px 0;
+                gap: 25px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+                border-top: 2px solid rgba(255,255,255,0.1);
+                animation: slideDownFadeIn 0.5s ease-out forwards;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+            
+            @keyframes slideDownFadeIn {
+                from { opacity: 0; transform: translateY(-30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+
+        /* Page Content Styles */
+        .page-section {
+            display: none;
+            padding-top: 120px;
+            min-height: calc(100vh - 100px);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Home Section - Parallax and Dynamic elements */
+        #home {
+            background: linear-gradient(rgba(10, 43, 76, 0.95), rgba(10, 43, 76, 0.9)), url('https://images.unsplash.com/photo-1554224155-ac826bbd4052?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-white);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px; /* For interactive parallax */
+        }
+        /* Home section subtle particle effect - more complex */
+        #home::before, #home::after, .particle-overlay {
+            content: '';
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.08); /* More subtle */
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        #home::before { width: 200px; height: 200px; top: 15%; left: 8%; opacity: 0.1; }
+        #home::after { width: 150px; height: 150px; bottom: 10%; right: 12%; opacity: 0.1; }
+        .particle-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at top left, rgba(255, 215, 0, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(173, 216, 230, 0.05) 0%, transparent 40%);
+            z-index: 0;
+        }
+
+        #home .content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px; /* Wider content area */
+            padding: 30px;
+            transform-style: preserve-3d; /* For mouse parallax */
+        }
+        #home h1 {
+            color: var(--text-white);
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            margin-bottom: 25px;
+            text-shadow: 0 6px 15px rgba(0,0,0,0.6); /* More pronounced shadow */
+            letter-spacing: -1px;
+            font-weight: 900;
+        }
+        #home p {
+            font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+            max-width: 900px;
+            margin: 0 auto 50px;
+            color: rgba(255,255,255,0.95);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        #home .btn-group {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            transform-style: preserve-3d; /* For mouse parallax */
+        }
+        
+        /* About Us */
+        #about-us .grid-layout {
+            grid-template-columns: 1fr 1.3fr;
+            align-items: center;
+        }
+        #about-us img {
+            border-radius: 15px; /* More rounded */
+            height: 520px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); /* Stronger shadow */
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+            position: relative; /* For tilt effect */
+            z-index: 1;
+        }
+        /* 3D Tilt effect on hover for About Us image */
+        #about-us img:hover {
+            transform: scale(1.03) rotateY(5deg) rotateX(2deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        #about-us h3 {
+            color: var(--primary-dark-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            font-weight: 900;
+        }
+        #about-us ul {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        #about-us ul li {
+            font-size: 1.1rem;
+            display: flex; /* Ensure checkmark aligns nicely */
+            align-items: center;
+            line-height: 1.6;
+            color: var(--text-dark);
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+        #about-us ul li:hover {
+            transform: translateX(8px);
+        }
+        #about-us ul li i {
+            font-size: 1.4rem;
+            color: var(--secondary-gold);
+            margin-right: 15px; /* More space */
+            transform: scale(1);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        #about-us ul li:hover i {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--primary-dark-blue);
+        }
+
+        /* Loan Services */
+        .service-card {
+            background-color: var(--text-white);
+            padding: 40px; /* More padding */
+            border-radius: 15px; /* More rounded */
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--medium-grey);
+            perspective: 800px; /* For 3D tilt */
+            z-index: 1;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 6px; /* Thicker accent bar */
+            background: linear-gradient(to right, var(--primary-dark-blue), var(--secondary-gold));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .service-card:hover {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25); /* Stronger shadow on hover */
+        }
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        .service-card i {
+            font-size: 4rem; /* Larger icons */
+            color: var(--secondary-gold);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .service-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .service-card p {
+            font-size: 1.1rem;
+            min-height: 80px; /* Ensure consistent card height */
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+        .service-card .btn {
+            margin-top: 20px;
+            padding: 14px 30px; /* Slightly smaller button for card fit */
+            font-size: 1.1rem;
+        }
+
+        /* Form Styles Common */
+        .form-group {
+            margin-bottom: 30px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: var(--primary-dark-blue);
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group input[type="file"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px 22px; /* Even larger padding */
+            border: 2px solid var(--medium-grey); /* Thicker border */
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+            background-color: var(--light-grey);
+            color: var(--text-dark);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); /* Subtle inner shadow */
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-gold); /* Gold focus border */
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2); /* Gold focus glow */
+            background-color: var(--text-white);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        .form-container {
+            background-color: var(--text-white);
+            padding: 60px; /* Even more padding */
+            border-radius: 18px; /* More rounded container */
+            box-shadow: 0 15px 45px rgba(0,0,0,0.15); /* Stronger overall shadow */
+            max-width: 900px; /* Wider forms */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05); /* Very light border */
+        }
+        /* Background pattern for forms */
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -20%; left: -20%;
+            width: 140%; height: 140%;
+            background: radial-gradient(circle at top left, rgba(173, 216, 230, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(255, 215, 0, 0.08) 0%, transparent 40%);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            animation: form-bg-flow 25s infinite linear alternate;
+            z-index: 0;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        @keyframes form-bg-flow {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.05) translate(10px, 15px); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+        .form-container form, .form-container > div {
+            position: relative;
+            z-index: 1;
+        }
+
+        #apply-form-response, #eligibility-result, #contact-form-response {
+            margin-top: 35px;
+            padding: 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            display: none;
+            text-align: center;
+            font-size: 1.1rem;
+            border: 2px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        #apply-form-response.success, #eligibility-result.success, #contact-form-response.success {
+            background-color: rgba(34, 197, 94, 0.15);
+            color: var(--success-green);
+        }
+        #apply-form-response.error, #eligibility-result.error, #contact-form-response.error {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: var(--red-error);
+        }
+
+        /* EMI Calculator */
+        #emi-calculator .form-container {
+            text-align: center;
+        }
+        #emi-result {
+            margin-top: 35px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        #emi-result span {
+            color: var(--primary-dark-blue);
+            font-weight: 900; /* Bolder for result */
+            font-size: 2rem;
+            display: block;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+        }
+        #emi-calculator .form-container p {
+            font-size: 1em;
+            color: var(--text-dark); 
+            margin-top: 25px; 
+            opacity: 0.9;
+        }
+
+
+        /* Customer Reviews */
+        .review-card {
+            background-color: var(--text-white);
+            padding: 45px;
+            border-radius: 18px; /* More rounded */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            transition: transform 0.5s ease-out, box-shadow 0.5s ease;
+            overflow: hidden;
+            border: 1px solid var(--medium-grey);
+            perspective: 800px;
+            z-index: 1;
+        }
+        /* Glowing border on hover for review cards */
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 18px;
+            background: linear-gradient(45deg, var(--primary-dark-blue), var(--secondary-gold), var(--primary-dark-blue));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(15px); /* Glow effect */
+            z-index: -1;
+        }
+        .review-card:hover {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        }
+        .review-card:hover::before {
+            opacity: 0.2; /* Subtle glow */
+        }
+        .review-card .quote-icon {
+            font-size: 4rem; /* Larger quote icons */
+            color: var(--secondary-gold);
+            margin-bottom: 25px;
+            opacity: 0.7; /* Softer icon */
+        }
+        .review-card p {
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        .review-card .reviewer-name {
+            font-weight: 700;
+            color: var(--primary-dark-blue);
+            font-size: 1.25rem;
+            display: flex; /* For image alignment */
+            align-items: center;
+            justify-content: center;
+        }
+        .stars {
+            color: var(--secondary-gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem; /* Larger stars */
+        }
+        .reviewer-name img {
+            width: 50px; /* Larger profile image */
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 15px;
+            border: 2px solid var(--secondary-gold); /* Gold border for image */
+            box-shadow: 0 0 10px rgba(255,215,0,0.3);
+        }
+
+        /* FAQs */
+        .faq-item {
+            background-color: var(--text-white);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* More prominent shadow */
+            overflow: hidden;
+            border: 1px solid var(--medium-grey);
+            transition: box-shadow 0.4s ease, transform 0.3s ease;
+            perspective: 800px;
+        }
+        .faq-item:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+        .faq-question {
+            padding: 22px 30px; /* More padding */
+            font-weight: 500;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--light-grey);
+            color: var(--primary-dark-blue);
+            transition: background-color 0.4s ease, border-radius 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .faq-question:hover {
+            background-color: var(--medium-grey);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .faq-question .icon {
+            font-size: 1.4rem;
+            transition: transform 0.4s ease;
+            color: var(--secondary-gold);
+        }
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), padding 0.6s ease-out; /* Smoother transition */
+            background-color: var(--text-white);
+        }
+        .faq-answer p {
+            padding-top: 18px;
+            padding-bottom: 18px;
+            margin-bottom: 0;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px; /* Even higher max height */
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+        .faq-item.active .faq-question {
+            background-color: var(--medium-grey);
+            border-bottom: 1px solid var(--light-grey);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .faq-item.active .faq-question .icon {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Us */
+        #contact-us .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background-color: var(--text-white);
+            padding: 50px;
+            border-radius: 18px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        #contact-us .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: transform 0.3s ease;
+        }
+        #contact-us .contact-item:hover {
+            transform: translateX(10px);
+        }
+        #contact-us .contact-item i {
+            color: var(--secondary-gold);
+            font-size: 2.2rem;
+            min-width: 35px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        #contact-us .contact-item:hover i {
+            transform: scale(1.1) rotate(-5deg);
+        }
+        #contact-us iframe {
+            width: 100%;
+            height: 500px; /* Taller map */
+            border: none;
+            border-radius: 18px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+            margin-top: 30px;
+            filter: grayscale(80%) hue-rotate(180deg); /* Stylized map */
+            transition: filter 0.5s ease;
+        }
+        #contact-us iframe:hover {
+            filter: grayscale(0%) hue-rotate(0deg); /* Full color on hover */
+        }
+        @media (min-width: 1024px) {
+            #contact-us .grid-layout {
+                grid-template-columns: 1fr 1.6fr; /* Map section wider */
+            }
+        }
+        
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-dark-blue);
+            color: var(--text-white);
+            padding: 60px 0; /* More padding */
+            text-align: center;
+            font-size: 1rem;
+            border-top: 8px solid var(--secondary-gold); /* Thicker gold top border */
+        }
+        .footer p {
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+        }
+        .footer a {
+            color: var(--secondary-gold);
+            font-weight: 500;
+            transition: color 0.4s ease, text-decoration 0.4s ease;
+            position: relative;
+            z-index: 1; /* For subtle text animation */
+        }
+        .footer a:hover {
+            color: var(--text-white);
+            text-decoration: underline;
+            letter-spacing: 0.5px;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 50px; /* More offset */
+            right: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* More space */
+            z-index: 1000; /* Ensure it's above other content */
+        }
+        .floating-btn {
+            background-color: var(--secondary-gold);
+            color: var(--primary-dark-blue);
+            width: 70px; /* Larger buttons */
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem; /* Larger icons */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Stronger shadow */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            animation: pulse-ring 2s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55); /* More advanced pulsing */
+        }
+        .floating-btn:hover {
+            transform: scale(1.15) rotate(5deg); /* More pronounced lift, scale, and rotate */
+            background-color: #fce034;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+            animation: none; /* Stop pulsing on hover */
+        }
+        /* Pulse ring animation */
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            50% { box-shadow: 0 0 0 25px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+        }
+
+        /* Admin Panel Modal */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000; /* Highest z-index */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9); /* Even darker overlay */
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            animation: fadeInModal 0.4s ease-out forwards;
+        }
+
+        .admin-modal-content {
+            background-color: var(--text-white);
+            padding: 50px;
+            border-radius: 20px; /* Very rounded */
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5); /* Extreme shadow */
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            animation: slideInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            overflow-y: auto;
+            max-height: 95vh; /* Larger max height */
+            border: 2px solid rgba(0,0,0,0.05); /* Subtle border */
+        }
+        .admin-modal-content h2 {
+            text-align: center;
+            margin-bottom: 35px;
+            color: var(--primary-dark-blue);
+            font-size: 3rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .close-button {
+            color: var(--medium-grey);
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 45px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--red-error);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        #admin-panel-content {
+            border: 2px solid var(--medium-grey); /* Thicker border */
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            overflow-x: auto;
+            background-color: var(--light-grey);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05); /* Inner shadow */
+        }
+        #admin-panel-content h3 {
+            margin-top: 30px;
+            margin-bottom: 25px;
+            color: var(--primary-dark-blue);
+            border-bottom: 4px solid var(--secondary-gold); /* Much thicker border */
+            padding-bottom: 10px;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        .application-item {
+            background-color: var(--text-white);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 8px solid var(--secondary-gold);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* More noticeable shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .application-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .application-item strong {
+            color: var(--primary-dark-blue);
+            font-size: 1.15rem;
+        }
+        .application-item p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .admin-dashboard-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .admin-stat-card {
+            background: linear-gradient(135deg, var(--primary-dark-blue), #0f4c80);
+            color: var(--text-white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 250px; /* Wider cards */
+            max-width: 300px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .admin-stat-card::before {
+            content: '';
+            position: absolute;
+            top: -20%; left: -20%;
+            width: 140%; height: 140%;
+            background: radial-gradient(circle at top left, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(173, 216, 230, 0.08) 0%, transparent 40%);
+            animation: stat-card-flow 20s infinite linear alternate;
+            z-index: 0;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        @keyframes stat-card-flow {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.03) translate(5px, 5px); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        .admin-stat-card .value {
+            font-size: 3.5rem; /* Largest values */
+            font-weight: 900;
+            color: var(--secondary-gold);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .admin-stat-card .label {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        .admin-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .admin-controls .btn {
+            flex-grow: 1;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-radius: 10px; /* Rounded table corners */
+            overflow: hidden; /* For rounded corners to work */
+        }
+        .admin-table th, .admin-table td {
+            border: 1px solid var(--medium-grey);
+            padding: 15px 18px; /* More padding */
+            text-align: left;
+            font-size: 1rem;
+        }
+        .admin-table th {
+            background-color: var(--primary-dark-blue);
+            color: var(--text-white);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .admin-table td a {
+            color: var(--primary-dark-blue);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .admin-table td a:hover {
+            color: var(--secondary-gold);
+        }
+        .admin-table tbody tr:nth-child(even) {
+            background-color: var(--light-grey);
+        }
+        .admin-table tbody tr:hover {
+            background-color: var(--medium-grey);
+            transition: background-color 0.2s ease;
+        }
+        .admin-panel .btn {
+            font-size: 1rem;
+        }
+
+        /* Keyframe Animations for Modals (consistent) */
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; display: flex; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(150px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .section-padding { padding: 80px 0; }
+            .container { padding: 0 20px; }
+
+            .logo { font-size: 2.5rem; }
+            #home h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); }
+            #home p { font-size: clamp(1.1rem, 3vw, 1.4rem); margin-bottom: 40px; }
+            #home .btn { padding: 14px 25px; font-size: 1.1rem; }
+            .service-card, .review-card, .faq-item, .form-container { padding: 35px; } /* Slightly less padding */
+            .form-group input, .form-group textarea, .form-group select { padding: 14px 18px; font-size: 1rem; }
+            
+            #about-us .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            #about-us img {
+                 height: 400px;
+            }
+            .grid-layout {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            #contact-us .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            #contact-us iframe {
+                 height: 400px;
+            }
+
+            .floating-buttons {
+                bottom: 30px;
+                right: 30px;
+                gap: 20px;
+            }
+            .floating-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.9rem;
+            }
+
+            .admin-modal-content {
+                padding: 30px;
+                max-width: 95vw;
+            }
+            .close-button {
+                font-size: 38px;
+                top: 15px;
+                right: 25px;
+            }
+            .admin-stat-card {
+                min-width: 180px;
+                max-width: 100%;
+            }
+            .admin-stat-card .value { font-size: 3rem; }
+            .admin-stat-card .label { font-size: 1.1rem; }
+            .admin-controls .btn {
+                width: 100%;
+            }
+            #admin-panel-content h3 {
+                font-size: 1.8rem;
+            }
+            .admin-table th, .admin-table td {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 60px 0; }
+            .logo { font-size: 2.2rem; }
+            h1 { font-size: clamp(2.5rem, 9vw, 3.5rem); }
+            h2 { font-size: clamp(2rem, 8vw, 3rem); }
+            h3 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+            .btn { padding: 12px 20px; font-size: 1rem; letter-spacing: 0.5px; }
+            .service-card, .review-card, .faq-item, .form-container { padding: 25px; }
+            .form-group input, .form-group textarea, .form-group select { padding: 12px; font-size: 0.95rem; }
+            .floating-btn { width: 55px; height: 55px; font-size: 1.7rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.8rem; }
+            #home p { font-size: 1rem; }
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            .floating-btn { width: 50px; height: 50px; font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header" id="mainHeader">
+        <div class="container">
+            <a href="#home" class="logo" onclick="navigateTo('home')">Mudra<span class="text-gold">Finance</span></a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="page-link active" data-page="home"><span>Home</span></a>
+                <a href="#about-us" class="page-link" data-page="about-us"><span>About Us</span></a>
+                <a href="#loan-services" class="page-link" data-page="loan-services"><span>Loan Services</span></a>
+                <a href="#eligibility-checker" class="page-link" data-page="eligibility-checker"><span>Eligibility</span></a>
+                <a href="#apply-for-loan" class="page-link" data-page="apply-for-loan"><span>Apply for Loan</span></a>
+                <a href="#emi-calculator" class="page-link" data-page="emi-calculator"><span>EMI Calculator</span></a>
+                <a href="#customer-reviews" class="page-link" data-page="customer-reviews"><span>Reviews</span></a>
+                <a href="#faqs" class="page-link" data-page="faqs"><span>FAQs</span></a>
+                <a href="#contact-us" class="page-link" data-page="contact-us"><span>Contact Us</span></a>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (simulated pages) -->
+    <main>
+
+        <!-- Home Page -->
+        <section id="home" class="page-section active">
+            <div class="particle-overlay"></div>
+            <div class="container content" id="home-content">
+                <h1 class="hero-text">Your Financial Future. <br>Our Expertise.</h1>
+                <p class="hero-subtext">
+                    Mudra Finance empowers your dreams with tailored personal, home, education, and business loans. Experience world-class digital finance solutions with leading security and modern design.
+                </p>
+                <div class="btn-group hero-buttons">
+                    <a href="#apply-for-loan" class="btn" onclick="navigateTo('apply-for-loan')"><i class="fas fa-hand-holding-usd"></i> Apply for Loan</a>
+                    <a href="#loan-services" class="btn btn-outline" onclick="navigateTo('loan-services')"><i class="fas fa-info-circle"></i> Explore Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Page -->
+        <section id="about-us" class="page-section section-padding bg-light-grey">
+            <div class="container">
+                <h2 class="text-center section-title">About <span class="text-gold">Mudra Finance</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    At Mudra Finance, we are more than just a financial institution; we are your dedicated partners in growth and success. Our mission is to provide accessible and reliable financial solutions that empower individuals and businesses to achieve their aspirations.
+                </p>
+                <div class="grid-layout">
+                    <div class="about-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e6592c300dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Finance professionals working together">
+                    </div>
+                    <div class="about-text-content">
+                        <h3>Our Vision & Values</h3>
+                        <p>Driven by integrity and innovation, we aim to be the most trusted and customer-centric financial service provider. We believe in building lasting relationships by offering transparent, efficient, and secure loan services.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Customer-First Approach & Personalized Solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Unwavering Transparency & Ethical Practices</li>
+                            <li><i class="fas fa-check-circle"></i> Innovation in Financial Technology</li>
+                            <li><i class="fas fa-check-circle"></i> Secure & Reliable Data Management</li>
+                            <li><i class="fas fa-check-circle"></i> Commitment to Community & Growth</li>
+                        </ul>
+                        <p style="margin-top: 25px;">With years of expertise, we've successfully guided countless clients toward their financial milestones. Discover the Mudra Finance difference today!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loan Services Page -->
+        <section id="loan-services" class="page-section section-padding">
+            <div class="container">
+                <h2 class="text-center section-title">Our Comprehensive <span class="text-gold">Loan Services</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    Whether you're planning for personal growth, a new home, advanced education, or expanding your enterprise, Mudra Finance offers perfectly tailored loan products to meet your unique requirements.
+                </p>
+                <div class="grid-layout" id="service-cards-container">
+                    <div class="service-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Personal Loans</h3>
+                        <p>Flexible financing for immediate personal needs, from travel to medical expenses, with quick disbursal and competitive rates.</p>
+                        <a href="#apply-for-loan" class="btn" onclick="navigateTo('apply-for-loan')">Apply Now</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-home"></i>
+                        <h3>Home Loans</h3>
+                        <p>Transform your dream of homeownership into reality with our attractive home loan options and simplified application process.</p>
+                        <a href="#apply-for-loan" class="btn" onclick="navigateTo('apply-for-loan')">Apply Now</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Education Loans</h3>
+                        <p>Invest in a brighter future. Our education loans support your academic journey, covering tuition, living expenses, and more.</p>
+                        <a href="#apply-for-loan" class="btn" onclick="navigateTo('apply-for-loan')">Apply Now</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-building"></i>
+                        <h3>Business Loans</h3>
+                        <p>Fuel your entrepreneurial ambitions. Get agile financing solutions for working capital, expansion plans, or new projects.</p>
+                        <a href="#apply-for-loan" class="btn" onclick="navigateTo('apply-for-loan')">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eligibility Checker Page -->
+        <section id="eligibility-checker" class="page-section section-padding bg-light-grey">
+            <div class="container">
+                <h2 class="text-center section-title">Check Your <span class="text-gold">Loan Eligibility</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    Quickly verify if you meet the basic requirements for a loan by providing a few simple details. Get an instant, preliminary assessment!
+                </p>
+                <div class="form-container">
+                    <form id="eligibility-form">
+                        <div class="form-group">
+                            <label for="eligibility-loan-type">Loan Type:</label>
+                            <select id="eligibility-loan-type" name="loanType" required>
+                                <option value="">Select Loan Type</option>
+                                <option value="Personal">Personal Loan</option>
+                                <option value="Home">Home Loan</option>
+                                <option value="Education">Education Loan</option>
+                                <option value="Business">Business Loan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="eligibility-income">Monthly Income (INR):</label>
+                            <input type="number" id="eligibility-income" name="income" placeholder="e.g., 50000" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eligibility-existing-emi">Existing Monthly EMI (INR):</label>
+                            <input type="number" id="eligibility-existing-emi" name="existingEmi" placeholder="e.g., 10000 (enter 0 if none)" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eligibility-age">Your Age:</label>
+                            <input type="number" id="eligibility-age" name="age" placeholder="e.g., 30" min="18" max="65" required>
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-check-circle"></i> Check Eligibility</button>
+                    </form>
+                    <div id="eligibility-result"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Apply for Loan Page -->
+        <section id="apply-for-loan" class="page-section section-padding">
+            <div class="container">
+                <h2 class="text-center section-title">Apply for Your <span class="text-gold">Loan Online</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    Our streamlined application process makes it easy to apply for the loan you need. Fill out the form, upload necessary documents, and we'll handle the rest securely.
+                </p>
+                <div class="form-container">
+                    <form id="loan-application-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name:</label>
+                            <input type="text" id="full-name" name="fullName" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile-number">Mobile Number:</label>
+                            <input type="tel" id="mobile-number" name="mobileNumber" placeholder="9876543210" pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan-amount">Desired Loan Amount (INR):</label>
+                            <input type="number" id="loan-amount" name="loanAmount" placeholder="e.g., 500000" min="10000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan-type">Loan Type:</label>
+                            <select id="loan-type" name="loanType" required>
+                                <option value="">Select Loan Type</option>
+                                <option value="Personal Loan">Personal Loan</option>
+                                <option value="Home Loan">Home Loan</option>
+                                <option value="Education Loan">Education Loan</option>
+                                <option value="Business Loan">Business Loan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pan-number">PAN Number:</label>
+                            <input type="text" id="pan-number" name="panNumber" placeholder="ABCDE1234F" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter a valid 10-character PAN number (e.g., ABCDE1234F)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <textarea id="address" name="address" placeholder="Your full residential address" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="id-document">Upload ID/Document (PDF, JPG, PNG):</label>
+                            <input type="file" id="id-document" name="idDocument" accept=".pdf,.jpg,.jpeg,.png">
+                            <small style="display: block; margin-top: 5px; color: var(--text-dark); opacity: 0.8;">(Max file size 2MB; for demo purposes, no actual file upload occurs. Only file name is stored.)</small>
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Submit Application</button>
+                    </form>
+                    <div id="apply-form-response"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EMI Calculator Page -->
+        <section id="emi-calculator" class="page-section section-padding bg-light-grey">
+            <div class="container">
+                <h2 class="text-center section-title">EMI <span class="text-gold">Calculator</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    Plan your finances effectively by calculating your estimated monthly EMI. Simply input your loan details below.
+                </p>
+                <div class="form-container">
+                    <form id="emi-calc-form">
+                        <div class="form-group">
+                            <label for="loan-principal">Loan Amount (INR):</label>
+                            <input type="number" id="loan-principal" name="principal" placeholder="e.g., 1000000" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interest-rate">Annual Interest Rate (%):</label>
+                            <input type="number" id="interest-rate" name="rate" placeholder="e.g., 8.5" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan-tenure">Loan Tenure (Years):</label>
+                            <input type="number" id="loan-tenure" name="tenure" placeholder="e.g., 20" min="1" required>
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-calculator"></i> Calculate EMI</button>
+                    </form>
+                    <div id="emi-result"></div>
+                    <p>
+                        <span style="font-weight: bold; color: var(--red-error);">Developers Note:</span> To access the hidden Admin Login panel, type '<span style="color: var(--primary-dark-blue); font-weight: bold;">8447850781</span>' into the "Loan Amount" field and click 'Calculate EMI'.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Reviews Page -->
+        <section id="customer-reviews" class="page-section section-padding">
+            <div class="container">
+                <h2 class="text-center section-title">What Our <span class="text-gold">Customers Say</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    Our clients' success stories are our greatest motivation. Read testimonials from individuals and businesses who achieved their financial goals with Mudra Finance.
+                </p>
+                <div class="grid-layout" id="review-cards-container">
+                    <div class="review-card">
+                        <span class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </span>
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"Mudra Finance transformed my dream of owning a home into a beautiful reality. Their team was incredibly supportive, and the process was smooth from start to finish. Truly outstanding service!"</p>
+                        <p class="reviewer-name">- Priya Sharma <img src="https://images.unsplash.com/photo-1579612330882-353cfc1d9326?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=60&h=60&q=80" alt="Priya Sharma avatar"></p>
+                    </div>
+                    <div class="review-card">
+                        <span class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"Our business was at a critical juncture, and Mudra Finance's business loan provided the perfect impetus for growth. Fast approval, flexible terms, and genuine professionalism. A true partner!"</p>
+                        <p class="reviewer-name">- Rahul Singh <img src="https://images.unsplash.com/photo-1517841961448-9c5952f4c657?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=60&h=60&q=80" alt="Rahul Singh avatar"></p>
+                    </div>
+                    <div class="review-card">
+                        <span class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </span>
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"Securing an education loan from Mudra Finance was surprisingly simple. Their commitment to my future, coupled with excellent guidance, made my master's degree accessible. Forever grateful!"</p>
+                        <p class="reviewer-name">- Smriti Das <img src="https://images.unsplash.com/photo-1549429402-999aa7f9996a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=60&h=60&q=80" alt="Smriti Das avatar"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Page -->
+        <section id="faqs" class="page-section section-padding bg-light-grey">
+            <div class="container">
+                <h2 class="text-center section-title">Frequently Asked <span class="text-gold">Questions</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    Browse our comprehensive FAQ section to find quick answers regarding our loan products, application process, documentation, and more.
+                </p>
+                <div class="faq-list" style="max-width: 800px; margin: 0 auto;">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What documents are required for a personal loan?</span>
+                            <i class="fas fa-plus icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Typically, we require identity proof (e.g., Aadhar, PAN), address proof (e.g., utility bill), and income proof (e.g., salary slips, bank statements, ITR). Additional documents may be requested based on your profile and loan type.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How long does the loan approval process take?</span>
+                            <i class="fas fa-plus icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once all required documents are submitted and verified, personal loans can be approved within 24-48 hours. Home and business loans might take slightly longer, usually 3-7 business days, depending on the complexity of verification.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I apply for a loan if I have a low credit score?</span>
+                            <i class="fas fa-plus icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While a healthy credit score is beneficial, we evaluate each application comprehensively. We may offer specific loan products or alternative solutions for applicants with lower credit scores, potentially with different terms or collateral requirements.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What are the repayment options available?</span>
+                            <i class="fas fa-plus icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer flexible repayment options including EMI via auto-debit from your bank account, online payments through our portal, and cheque/cash payments at our designated branches or partner locations. We aim to make repayment convenient for you.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Is there any pre-payment penalty?</span>
+                            <i class="fas fa-plus icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our policy on pre-payment penalties varies by specific loan product and terms. Some loans may offer partial or full pre-payment without penalty, while others might have a nominal charge. Please refer to your specific loan agreement or consult with our advisors for details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Page -->
+        <section id="contact-us" class="page-section section-padding">
+            <div class="container">
+                <h2 class="text-center section-title">Get in <span class="text-gold">Touch With Us</span></h2>
+                <p class="text-center section-description" style="max-width: 800px; margin: 0 auto 80px;">
+                    Our dedicated support team is ready to assist you with any inquiries or assistance you may require. Reach out to us through the contact form or visit our office.
+                </p>
+                <div class="grid-layout">
+                    <div class="contact-info">
+                        <h3>Our Details</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123, Financial Hub, Sector 10, Dwarka, New Delhi, India - 110075</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 9007546886</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@mudrafinance.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <span>www.mudrafinance.com</span>
+                        </div>
+                        <h4 style="margin-top: 35px; color: var(--primary-dark-blue);">Find Us on Map:</h4>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.268798087948!2d77.01131107507314!3d28.621217084534123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1bf493f2f84f%3A0x6b4c2957b4f8d951!2sDwarka%20Sector%2010%2C%20Dwarka%2C%20Delhi%2C%20110075!5e0!3m2!1sen!2sin!4v1678888888888!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="form-container">
+                        <h3>Send Us a Message</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="contact-name">Your Name:</label>
+                                <input type="text" id="contact-name" name="name" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Your Email:</label>
+                                <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject">Subject:</label>
+                                <input type="text" id="contact-subject" name="subject" placeholder="Inquiry about loans" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">Message:</label>
+                                <textarea id="contact-message" name="message" placeholder="Type your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn"><i class="fas fa-envelope-open-text"></i> Send Message</button>
+                        </form>
+                        <div id="contact-form-response"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Login Page (Hidden Access) -->
+        <section id="admin-login" class="page-section section-padding bg-dark-blue" style="display: none;">
+            <div class="container text-white text-center">
+                <h2>Admin <span class="text-gold">Access Panel</span></h2>
+                <p>This is a secure area for authorized personnel only.</p>
+                <div class="form-container" style="background-color: var(--text-white); color: var(--text-dark); margin-top: 40px;">
+                    <h3>Admin Login</h3>
+                    <form id="admin-login-form" class="admin-login-form">
+                        <div class="form-group">
+                            <label for="admin-username">Username:</label>
+                            <input type="text" id="admin-username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">Password:</label>
+                            <input type="password" id="admin-password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    </form>
+                    <p id="admin-login-message" style="color: var(--red-error); margin-top: 15px; font-weight: 500;"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mudra Finance - All rights reserved.</p>
+            <p>Designed & Developed by <a href="https://github.com/bittuchauhan7777" target="_blank" rel="noopener noreferrer">BITTU CHAUHAN</a></p>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:+919007546886" class="floating-btn" title="Call Now">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="https://wa.me/9007546886" target="_blank" rel="noopener noreferrer" class="floating-btn" title="WhatsApp Now">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="admin-modal">
+        <div class="admin-modal-content">
+            <span class="close-button" onclick="closeAdminModal()">&times;</span>
+            <h2 style="color: var(--primary-dark-blue);">Mudra Finance <span class="text-gold">Admin Panel</span></h2>
+            <div class="admin-dashboard-stats">
+                <div class="admin-stat-card">
+                    <div class="value" id="totalApplications">0</div>
+                    <div class="label">Total Applications</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="value" id="newApplications">0</div>
+                    <div class="label">New Today</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="value" id="avgLoanAmount">INR 0</div>
+                    <div class="label">Avg Loan Req.</div>
+                </div>
+            </div>
+            <div class="admin-controls">
+                <button class="btn" onclick="downloadAdminData('csv')"><i class="fas fa-download"></i> Download CSV</button>
+                <button class="btn" onclick="downloadAdminData('pdf')"><i class="fas fa-file-pdf"></i> Download PDF (Text)</button>
+                <button class="btn" onclick="refreshAdminDashboard()"><i class="fas fa-sync-alt"></i> Refresh Data</button>
+                <button class="btn" onclick="clearAllData()" style="background-color: var(--red-error);"><i class="fas fa-trash"></i> Clear All Data</button>
+            </div>
+
+            <h3 style="margin-top: 25px;">All Loan Applications</h3>
+            <div id="admin-panel-content">
+                <p id="no-applications-message" style="text-align: center; color: #666; font-size: 1.1rem; padding: 20px;">No applications submitted yet.</p>
+                <!-- Applications will be listed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- GSAP Animation Setup ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Global Selectors ---
+        const pageSections = document.querySelectorAll('.page-section');
+        const navLinks = document.querySelectorAll('.nav-menu .page-link');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const mainHeader = document.getElementById('mainHeader');
+
+        // --- Navigation and Page Management ---
+        function navigateTo(pageId) {
+            gsap.to(window, {duration: 0.8, scrollTo: `#${pageId}`, ease: "power2.inOut", onComplete: () => {
+                // Remove active class from all pages and links
+                pageSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Add active class to selected page and link
+                const selectedPage = document.getElementById(pageId);
+                if (selectedPage) {
+                    selectedPage.classList.add('active');
+                    const activeNavLink = document.querySelector(`.nav-menu a[data-page="${pageId}"]`);
+                    if (activeNavLink) {
+                        activeNavLink.classList.add('active');
+                    }
+                }
+
+                // Close mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+
+                // Update URL hash without page reload
+                history.pushState(null, '', `#${pageId}`);
+
+                // Trigger GSAP animations for the new page content after navigating
+                setupPageAnimations(pageId);
+            }});
+        }
+
+        // Handle initial load based on URL hash or default to home
+        window.addEventListener('load', () => {
+            const initialHash = window.location.hash.substring(1);
+            if (initialHash && document.getElementById(initialHash)) {
+                navigateTo(initialHash);
+            } else {
+                navigateTo('home'); // Default to home page
+            }
+        });
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Hide mobile menu when a nav link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+
+        // --- Sticky Header Effect ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+
+        // --- GSAP Page Specific Animations ---
+        // Function to set up GSAP animations for each page
+        function setupPageAnimations(pageId) {
+            // Kill existing ScrollTriggers to prevent re-creation
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+            // General section animations
+            const sectionSelector = `#${pageId} .section-title, #${pageId} .section-description`;
+            gsap.from(sectionSelector, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power3.out",
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: `#${pageId}`,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                    markers: false
+                }
+            });
+
+            // Specific page animations
+            if (pageId === 'home') {
+                gsap.from(".hero-text", { y: -100, opacity: 0, duration: 1.5, ease: "elastic.out(1, 0.75)" });
+                gsap.from(".hero-subtext", { y: 50, opacity: 0, duration: 1.2, delay: 0.5, ease: "power2.out" });
+                gsap.from(".hero-buttons .btn", { y: 50, opacity: 0, duration: 0.8, delay: 0.8, stagger: 0.2, ease: "back.out(1.7)" });
+
+                // Interactive parallax for home section
+                const homeContent = document.getElementById('home-content');
+                if (homeContent) {
+                    homeContent.addEventListener('mousemove', function(e) {
+                        const rect = homeContent.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+
+                        const mouseX_norm = (x - centerX) / centerX;
+                        const mouseY_norm = (y - centerY) / centerY;
+
+                        gsap.to(homeContent, {
+                            rotationY: mouseX_norm * 5, // Rotate up to 5 degrees
+                            rotationX: -mouseY_norm * 5, // Rotate up to 5 degrees
+                            transformOrigin: "center center",
+                            ease: "power1.out",
+                            duration: 0.5
+                        });
+                        gsap.to(".hero-buttons .btn", {
+                            x: mouseX_norm * 10,
+                            y: mouseY_norm * 10,
+                            duration: 0.5,
+                            ease: "power1.out"
+                        });
+                    });
+                    homeContent.addEventListener('mouseleave', function() {
+                        gsap.to(homeContent, { rotationY: 0, rotationX: 0, duration: 1, ease: "elastic.out(1, 0.75)" });
+                        gsap.to(".hero-buttons .btn", { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.75)" });
+                    });
+                }
+
+            } else if (pageId === 'about-us') {
+                gsap.from(".about-image-wrapper img", {
+                    x: -100, opacity: 0, duration: 1.2, ease: "power3.out",
+                    scrollTrigger: { trigger: ".about-image-wrapper", start: "top 90%", toggleActions: "play none none none" }
+                });
+                gsap.from(".about-text-content > *:not(h3)", {
+                    x: 100, opacity: 0, duration: 1.2, stagger: 0.15, ease: "power3.out",
+                    scrollTrigger: { trigger: ".about-text-content", start: "top 90%", toggleActions: "play none none none" }
+                });
+
+
+            } else if (pageId === 'loan-services') {
+                gsap.from("#service-cards-container .service-card", {
+                    opacity: 0,
+                    y: 80,
+                    rotationX: -30, // Initial tilt
+                    duration: 1.2,
+                    stagger: 0.2,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: "#service-cards-container",
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                });
+                // 3D hover for service cards using GSAP
+                 document.querySelectorAll('.service-card').forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+
+                        const rotateX = ((centerY - y) / centerY) * 10; // Max 10deg
+                        const rotateY = ((x - centerX) / centerX) * 10;  // Max 10deg
+
+                        gsap.to(card, {
+                            rotationX: rotateX,
+                            rotationY: rotateY,
+                            scale: 1.03,
+                            ease: "power2.out",
+                            duration: 0.3
+                        });
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, {
+                            rotationX: 0,
+                            rotationY: 0,
+                            scale: 1,
+                            ease: "elastic.out(1, 0.75)",
+                            duration: 0.7
+                        });
+                    });
+                 });
+
+            } else if (pageId === 'customer-reviews') {
+                gsap.from("#review-cards-container .review-card", {
+                    opacity: 0,
+                    x: (i) => i % 2 === 0 ? -100 : 100, // Alternate from left/right
+                    rotationY: (i) => i % 2 === 0 ? -30 : 30, // Alternate rotation
+                    duration: 1.5,
+                    stagger: 0.3,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#review-cards-container",
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                });
+                 // 3D hover for review cards using GSAP
+                 document.querySelectorAll('.review-card').forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+
+                        const rotateX = ((centerY - y) / centerY) * 8; // Max 8deg
+                        const rotateY = ((x - centerX) / centerX) * 8;  // Max 8deg
+
+                        gsap.to(card, {
+                            rotationX: rotateX,
+                            rotationY: rotateY,
+                            scale: 1.02,
+                            ease: "power2.out",
+                            duration: 0.3
+                        });
+                        gsap.to(card.querySelector('.quote-icon'), {
+                            x: rotateY * 2,
+                            y: rotateX * 2,
+                            duration: 0.3
+                        });
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, {
+                            rotationX: 0,
+                            rotationY: 0,
+                            scale: 1,
+                            ease: "elastic.out(1, 0.75)",
+                            duration: 0.7
+                        });
+                        gsap.to(card.querySelector('.quote-icon'), {
+                            x: 0,
+                            y: 0,
+                            duration: 0.7
+                        });
+                    });
+                 });
+
+            } else if (pageId === 'faqs') {
+                gsap.from(".faq-item", {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".faq-list",
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            } else if (pageId === 'contact-us') {
+                gsap.from(".contact-info > *, #contact-us iframe", {
+                    opacity: 0,
+                    x: -100,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".contact-info",
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                });
+                gsap.from("#contact-us .form-container", {
+                    opacity: 0,
+                    x: 100,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#contact-us .form-container",
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            }
+        }
+        
+        // Initial setup for the first page
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialHash = window.location.hash.substring(1);
+            setupPageAnimations(initialHash || 'home');
+        });
+
+
+        // --- Eligibility Checker Logic ---
+        document.getElementById('eligibility-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const income = parseFloat(document.getElementById('eligibility-income').value);
+            const existingEmi = parseFloat(document.getElementById('eligibility-existing-emi').value);
+            const age = parseInt(document.getElementById('eligibility-age').value);
+            const loanType = document.getElementById('eligibility-loan-type').value;
+            const resultDiv = document.getElementById('eligibility-result');
+
+            let message = '';
+            let isEligible = true;
+
+            if (isNaN(income) || isNaN(existingEmi) || isNaN(age) || income < 0 || existingEmi < 0 || age < 0) {
+                 message = '<p>Please enter valid positive numbers for all fields.</p>';
+                 isEligible = false;
+            } else if (age < 21 || age > 60) {
+                message = '<p>You must be between 21 and 60 years old to be considered for a loan.</p>';
+                isEligible = false;
+            } else if (income < 25000) {
+                message = '<p>Minimum monthly income required is INR 25,000 to be considered.</p>';
+                isEligible = false;
+            } else if ((existingEmi / income) > 0.4) {
+                message = '<p>Your existing EMI obligations are too high relative to your income for potential approval.</p>';
+                isEligible = false;
+            } else {
+                switch (loanType) {
+                    case 'Personal':
+                        if (income < 30000) isEligible = false;
+                        message = isEligible ? '<p>Based on your input, you appear to be eligible for a personal loan!</p>' : '<p>Your income is slightly below the preferred threshold for a personal loan.</p>';
+                        break;
+                    case 'Home':
+                        if (income < 50000) isEligible = false;
+                        message = isEligible ? '<p>Preliminary assessment suggests eligibility for a home loan. Further detailed checks will apply.</p>' : '<p>A higher monthly income is generally preferred for home loan eligibility.</p>';
+                        break;
+                    case 'Education':
+                        message = '<p>You appear to be eligible for an education loan. Specific course/institution criteria and co-applicant details will be reviewed.</p>';
+                        break;
+                    case 'Business':
+                        if (income < 40000) isEligible = false;
+                        message = isEligible ? '<p>Preliminary assessment suggests eligibility for a business loan. Comprehensive business financials will be reviewed.</p>' : '<p>Your income is slightly below the preferred threshold for a business loan, but business financials are key.</p>';
+                        break;
+                    default:
+                        message = '<p>Please select a loan type to check eligibility.</p>';
+                        isEligible = false;
+                }
+            }
+
+            resultDiv.style.display = 'block';
+            if (isEligible) {
+                resultDiv.className = 'success';
+                resultDiv.innerHTML = `${message}<a href="#apply-for-loan" class="btn" style="margin-top:25px;" onclick="navigateTo('apply-for-loan')"><i class="fas fa-file-invoice"></i> Proceed to Application</a>`;
+            } else {
+                resultDiv.className = 'error';
+                resultDiv.innerHTML = `${message}<p style="margin-top:18px;">Consider reviewing your details or contact us for personalized assistance.</p>`;
+            }
+             gsap.to(window, {duration: 0.8, scrollTo: resultDiv, ease: "power2.inOut"});
+        });
+
+        // --- Apply for Loan Logic (Frontend Simulation) ---
+        document.getElementById('loan-application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const responseDiv = document.getElementById('apply-form-response');
+
+            let documentFileName = 'N/A';
+            let documentFileSize = 0;
+            if (form['idDocument'].files.length > 0) {
+                documentFileName = form['idDocument'].files[0].name;
+                documentFileSize = form['idDocument'].files[0].size;
+            }
+
+            const MAX_FILE_SIZE = 2 * 1024 * 1024;
+            if (documentFileSize > MAX_FILE_SIZE) {
+                responseDiv.style.display = 'block';
+                responseDiv.className = 'error';
+                responseDiv.innerHTML = `<strong>File too large!</strong><br>Document must not exceed 2MB.`;
+                gsap.to(responseDiv, {opacity: 1, duration: 0.3, ease: "power2.out"});
+                setTimeout(() => { gsap.to(responseDiv, {opacity: 0, duration: 0.5, ease: "power2.out", onComplete: () => responseDiv.style.display = 'none'}); }, 5000);
+                return;
+            }
+
+            const formData = {
+                timestamp: new Date().toISOString(),
+                fullName: form['fullName'].value,
+                mobileNumber: form['mobileNumber'].value,
+                email: form['email'].value,
+                loanAmount: parseFloat(form['loanAmount'].value),
+                loanType: form['loanType'].value,
+                panNumber: form['panNumber'].value,
+                address: form['address'].value,
+                documentName: documentFileName
+            };
+
+            let applications = JSON.parse(localStorage.getItem('mudraFinanceApplications')) || [];
+            applications.unshift(formData);
+            localStorage.setItem('mudraFinanceApplications', JSON.stringify(applications));
+
+            responseDiv.style.display = 'block';
+            responseDiv.className = 'success';
+            responseDiv.innerHTML = `<strong>Application Submitted Successfully!</strong><br>Thank you for your application. Our team will review it and get in touch shortly.`;
+            gsap.fromTo(responseDiv, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.6, ease: "power2.out"});
+            form.reset();
+
+            setTimeout(() => {
+                gsap.to(responseDiv, {opacity: 0, y: -20, duration: 0.8, ease: "power2.in", onComplete: () => responseDiv.style.display = 'none'});
+            }, 6000);
+        });
+
+
+        // --- EMI Calculator Logic with Admin Trigger ---
+        document.getElementById('emi-calc-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const principalInput = document.getElementById('loan-principal');
+            const principal = parseFloat(principalInput.value);
+            const rate = parseFloat(document.getElementById('interest-rate').value);
+            const tenure = parseFloat(document.getElementById('loan-tenure').value);
+            const resultDiv = document.getElementById('emi-result');
+            const secretNum = '8447850781';
+
+            if (principalInput.value === secretNum) {
+                openAdminModal();
+                gsap.fromTo(resultDiv, {opacity: 1}, {opacity: 0, duration: 0.5, ease: "power1.out", onComplete: () => resultDiv.style.display = 'none'});
+                principalInput.value = '';
+                return;
+            }
+
+            if (isNaN(principal) || isNaN(rate) || isNaN(tenure) || principal <= 0 || rate < 0 || tenure <= 0) {
+                resultDiv.innerHTML = '<p style="color: var(--red-error);">Please enter valid positive numbers for all fields.</p>';
+                 gsap.fromTo(resultDiv, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.6, ease: "power2.out"});
+                return;
+            }
+
+            const monthlyRate = rate / (12 * 100);
+            const numberOfPayments = tenure * 12;
+
+            let emi;
+            if (monthlyRate === 0) {
+                emi = principal / numberOfPayments;
+            } else {
+                emi = principal * monthlyRate * Math.pow((1 + monthlyRate), numberOfPayments) / (Math.pow((1 + monthlyRate), numberOfPayments) - 1);
+            }
+
+            resultDiv.innerHTML = `Your approximate monthly EMI is: <span>INR ${emi.toFixed(2).toLocaleString('en-IN')}</span>`;
+            gsap.fromTo(resultDiv, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.6, ease: "power2.out"});
+            resultDiv.style.display = 'block';
+        });
+
+
+        // --- FAQs Accordion ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const faqItem = event.target.closest('.faq-item');
+                const icon = faqItem.querySelector('.icon');
+
+                document.querySelectorAll('.faq-item.active').forEach(openFaq => {
+                    if (openFaq !== faqItem) {
+                        openFaq.classList.remove('active');
+                        gsap.to(openFaq.querySelector('.faq-answer'), {maxHeight: 0, padding: '0 30px', duration: 0.4, ease: "power2.out"});
+                        gsap.to(openFaq.querySelector('.icon'), {rotation: 0, duration: 0.4});
+                        openFaq.querySelector('.icon').classList.replace('fa-minus', 'fa-plus');
+                    }
+                });
+
+                faqItem.classList.toggle('active');
+                const answer = faqItem.querySelector('.faq-answer');
+                if (faqItem.classList.contains('active')) {
+                    gsap.to(answer, {maxHeight: answer.scrollHeight + 30, padding: '18px 30px', duration: 0.6, ease: "power2.out"});
+                    gsap.to(icon, {rotation: 180, duration: 0.6});
+                    icon.classList.replace('fa-plus', 'fa-minus');
+                } else {
+                    gsap.to(answer, {maxHeight: 0, padding: '0 30px', duration: 0.4, ease: "power2.out"});
+                    gsap.to(icon, {rotation: 0, duration: 0.4});
+                    icon.classList.replace('fa-minus', 'fa-plus');
+                }
+            });
+        });
+
+        // --- Contact Form ---
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const responseDiv = document.getElementById('contact-form-response');
+
+            responseDiv.style.display = 'block';
+            responseDiv.className = 'success';
+            responseDiv.innerHTML = `<strong>Message Sent!</strong><br>Thank you for contacting us. We will get back to you soon.`;
+            gsap.fromTo(responseDiv, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.6, ease: "power2.out"});
+            e.target.reset();
+
+            setTimeout(() => {
+                gsap.to(responseDiv, {opacity: 0, y: -20, duration: 0.8, ease: "power2.in", onComplete: () => responseDiv.style.display = 'none'});
+            }, 6000);
+        });
+
+
+        // --- Admin Panel Logic ---
+        const adminModal = document.getElementById('adminModal');
+        const adminLoginForm = document.getElementById('admin-login-form');
+        const adminLoginMessage = document.getElementById('admin-login-message');
+        const adminPanelContent = document.getElementById('admin-panel-content');
+        const adminUsernameInput = document.getElementById('admin-username');
+        const adminPasswordInput = document.getElementById('admin-password');
+
+        function openAdminModal() {
+            adminModal.style.display = 'flex';
+            adminLoginMessage.textContent = '';
+            adminLoginForm.style.display = 'block';
+            adminPanelContent.style.display = 'none'; 
+            
+            adminUsernameInput.value = 'gaytri';
+            adminPasswordInput.value = 'bittu';
+        }
+
+        function closeAdminModal() {
+            gsap.to(adminModal, {opacity: 0, duration: 0.5, ease: "power2.out", onComplete: () => adminModal.style.display = 'none'});
+        }
+
+        adminLoginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = adminUsernameInput.value;
+            const password = adminPasswordInput.value;
+
+            if (username === 'gaytri' && password === 'bittu') {
+                adminLoginMessage.textContent = '';
+                gsap.to(adminLoginForm, {opacity: 0, y: -20, duration: 0.6, ease: "power2.in", onComplete: () => {
+                    adminLoginForm.style.display = 'none';
+                    adminPanelContent.style.display = 'block';
+                    gsap.fromTo(adminPanelContent, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.8, ease: "power2.out"});
+                    updateAdminDashboard();
+                }});
+            } else {
+                adminLoginMessage.textContent = 'Invalid username or password. Please try again.';
+                gsap.fromTo(adminLoginMessage, {scale: 0.8}, {scale: 1, duration: 0.3, ease: "back.out(2)"});
+            }
+        });
+
+        function updateAdminDashboard() {
+            const applications = JSON.parse(localStorage.getItem('mudraFinanceApplications')) || [];
+            adminPanelContent.innerHTML = '';
+
+            if (applications.length === 0) {
+                adminPanelContent.innerHTML = '<p id="no-applications-message" style="text-align: center; color: #666; font-size: 1.1rem; padding: 20px;">No applications submitted yet.</p>';
+                document.getElementById('totalApplications').textContent = 0;
+                document.getElementById('newApplications').textContent = 0;
+                document.getElementById('avgLoanAmount').textContent = 'INR 0';
+                return;
+            }
+
+            const totalApplications = applications.length;
+            const today = new Date().toDateString();
+            const newToday = applications.filter(app => new Date(app.timestamp).toDateString() === today).length;
+            const totalLoanAmount = applications.reduce((sum, app) => sum + parseFloat(app.loanAmount || 0), 0);
+            const avgLoanAmount = totalApplications > 0 ? (totalLoanAmount / totalApplications) : 0;
+
+            document.getElementById('totalApplications').textContent = totalApplications;
+            document.getElementById('newApplications').textContent = newToday;
+            document.getElementById('avgLoanAmount').textContent = `INR ${avgLoanAmount.toLocaleString('en-IN', {style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+
+            let tableHTML = `
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Loan Type</th>
+                            <th>Amount</th>
+                            <th>PAN</th>
+                            <th>Document</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            applications.forEach(app => {
+                tableHTML += `
+                    <tr>
+                        <td>${new Date(app.timestamp).toLocaleDateString()}</td>
+                        <td>${app.fullName}</td>
+                        <td>${app.mobileNumber}</td>
+                        <td>${app.email}</td>
+                        <td>${app.loanType}</td>
+                        <td>INR ${parseFloat(app.loanAmount).toLocaleString('en-IN')}</td>
+                        <td>${app.panNumber}</td>
+                        <td>${app.documentName !== 'N/A' ? `<a href="#" onclick="alert('File download simulated for: ${app.documentName}\\nIn a real app, this would be downloaded via a secure server endpoint using an actual file ID.'); return false;">${app.documentName}</a>` : 'N/A'}</td>
+                    </tr>
+                `;
+            });
+            tableHTML += '</tbody></table>';
+            adminPanelContent.innerHTML = tableHTML;
+        }
+
+        function downloadAdminData(format) {
+            const applications = JSON.parse(localStorage.getItem('mudraFinanceApplications')) || [];
+
+            if (applications.length === 0) {
+                alert('No data to download.');
+                return;
+            }
+
+            if (format === 'csv') {
+                let csvContent = "data:text/csv;charset=utf-8,";
+                const headers = ["Timestamp", "Full Name", "Mobile Number", "Email", "Loan Amount", "Loan Type", "PAN Number", "Address", "Document Name"];
+                csvContent += headers.map(header => `"${header}"`).join(",") + "\n";
+
+                applications.forEach(app => {
+                    const row = [
+                        app.timestamp,
+                        app.fullName,
+                        app.mobileNumber,
+                        app.email,
+                        app.loanAmount,
+                        app.loanType,
+                        app.panNumber,
+                        app.address.replace(/"/g, '""').replace(/\n/g, '\\n'),
+                        app.documentName
+                    ];
+                    csvContent += row.map(field => `"${field}"`).join(",") + "\n";
+                });
+
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "mudra_finance_applications.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                alert('CSV data downloaded.');
+
+            } else if (format === 'pdf') {
+                let pdfContent = "Mudra Finance Loan Applications\n\n";
+                pdfContent += "--------------------------------------------------------\n";
+                applications.forEach(app => {
+                    pdfContent += `Date: ${new Date(app.timestamp).toLocaleString()}\n`;
+                    pdfContent += `Name: ${app.fullName}\n`;
+                    pdfContent += `Mobile: ${app.mobileNumber}\n`;
+                    pdfContent += `Email: ${app.email}\n`;
+                    pdfContent += `Loan Type: ${app.loanType}\n`;
+                    pdfContent += `Loan Amount: INR ${parseFloat(app.loanAmount).toLocaleString('en-IN')}\n`;
+                    pdfContent += `PAN: ${app.panNumber}\n`;
+                    pdfContent += `Address: ${app.address.replace(/\n/g, ', ')}\n`;
+                    pdfContent += `Document: ${app.documentName}\n`;
+                    pdfContent += "--------------------------------------------------------\n\n";
+                });
+
+                const blob = new Blob([pdfContent], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'mudra_finance_applications.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                alert('PDF data simulated and downloaded. (Note: This is a basic text-based PDF, not a formatted one).');
+            }
+        }
+
+        function clearAllData() {
+            if (confirm('Are you sure you want to delete ALL application data? This action cannot be undone.')) {
+                localStorage.removeItem('mudraFinanceApplications');
+                alert('All application data cleared from local storage.');
+                updateAdminDashboard();
+            }
+        }
+
+        function refreshAdminDashboard() {
+            updateAdminDashboard();
+            alert('Admin dashboard data refreshed.');
+        }
+
+    </script>
+</body>
+</html>
